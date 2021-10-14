@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Finaktiva.Repository.Entities
+namespace Finaktiva.Services.ModelView
 {
-    public class User
+    public class UserModelView
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public bool Active { get; set; }
-        public Role Role { get; set; }
+        public RoleModelView Role { get; set; }
     }
 }
