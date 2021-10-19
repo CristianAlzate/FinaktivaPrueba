@@ -24,18 +24,26 @@ namespace Finaktiva.Web
                 {
                     context.Database.EnsureCreated();
                     if (!context.Roles.Any()) {
-                        var adminRole = new Role() { Description = "Administrador" };
-                        var operativeRole = new Role() { Description = "Operativo" };
+                        var adminRole = new Role() { Description = "Admin" };
+                        var operativeRole = new Role() { Description = "Operative" };
                         var adminUser = new User()
                         {
                             Name = "calzate",
-                            Password = "123",
+                            Password = "MQAyADMA",
                             Active = true,
                             Role = adminRole
+                        };
+                        var operatorUser = new User()
+                        {
+                            Name = "mencho",
+                            Password = "MQAyADMA",
+                            Active = true,
+                            Role = operativeRole
                         };
                         context.Roles.Add(adminRole);
                         context.Roles.Add(operativeRole);
                         context.Users.Add(adminUser);
+                        context.Users.Add(operatorUser);
                         context.SaveChanges();
                     }
 

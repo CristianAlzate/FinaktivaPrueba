@@ -10,6 +10,7 @@ namespace Finaktiva.Services
     {
         Task<List<UserModelView>> GetAsync();
         Task<UserModelView> GetAsync(int id);
+        Task<UserModelView> GetAsync(string name, string pass);
         Task<int> PostAsync(UserModelView user);
         Task<bool> PutAsync(UserModelView user);
 

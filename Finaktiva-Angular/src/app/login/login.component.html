@@ -1,0 +1,22 @@
+<main class="form-signin text-center" style="padding: 5% 35%;" >
+    <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
+        <img class="mb-4" [src]="imgLogo" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating">
+        <input type="text" formControlName="username" class="form-control" id="floatingInput" placeholder="Username">
+        <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+        <input type="password" formControlName="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="checkbox mb-3">
+        <label class="link-create">
+            <a routerLink="/register"><b>Creater an account</b></a>
+        </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+    </form>
+</main>

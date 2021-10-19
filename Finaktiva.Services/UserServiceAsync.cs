@@ -1,4 +1,6 @@
-﻿using Finaktiva.Repository.Repository;
+﻿using AutoMapper;
+using Finaktiva.Repository.Entities;
+using Finaktiva.Repository.Repository;
 using Finaktiva.Services.ModelView;
 using System;
 using System.Collections.Generic;
@@ -10,30 +12,37 @@ namespace Finaktiva.Services
     public class UserServiceAsync : IUserServiceAsync
     {
         private readonly IUserRepositoryAsync _repository;
+        private readonly IMapper _mapper;
 
-        public UserServiceAsync(IUserRepositoryAsync repository)
+        public UserServiceAsync(IUserRepositoryAsync repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         public async Task<List<UserModelView>> GetAsync()
         {
-            var users = await _repository.GetAllAsync();
-            return new List<UserModelView>();
+            return _mapper.Map<List<UserModelView>>(await _repository.GetAllAsync());
         }
 
         public async Task<UserModelView> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<UserModelView>(await _repository.GetAsync(id));
+        }
+
+        public async Task<UserModelView> GetAsync(string name, string pass)
+        {
+            return _mapper.Map<UserModelView>(await _repository.GetAsync(name,pass));
         }
 
         public async Task<int> PostAsync(UserModelView user)
         {
-            throw new NotImplementedException();
+            return await _repository.InsertAsync(_mapper.Map<User>(user));
         }
 
         public async Task<bool> PutAsync(UserModelView user)
         {
-            throw new NotImplementedException();
+            return await _repository.UpdateAsync(_mapper.Map<User>(user));
         }
+
     }
 }
