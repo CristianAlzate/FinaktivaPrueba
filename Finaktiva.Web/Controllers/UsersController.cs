@@ -20,7 +20,8 @@ namespace Finaktiva.Web.Controllers
 
         public UsersController(IUserServiceAsync service)
         {
-            _service = service;
+            _service = service ?? throw new ArgumentNullException(nameof(service));
+
         }
 
         [HttpGet]
